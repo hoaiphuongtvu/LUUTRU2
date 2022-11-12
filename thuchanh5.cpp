@@ -66,6 +66,7 @@ int demtu(char s[50])
 int demkt(char s[50])
 {
 	int demkytu=0;
+	int demtu=0;
 	char c,c1;
 	printf("\nNhap mot ky tu:");
 	scanf("%c",&c);
