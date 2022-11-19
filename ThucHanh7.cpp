@@ -108,7 +108,7 @@ void gtbx(int *a, int n)
 	    
 	     	if(a[i]==x) 
 	     	{
-	     	   printf("\n GIA TRI BANG a[%d]",i);
+	     	   printf("\nGia tri can tim tai vi tri a[%d]",i);
 	     	 
 	     	   y++;
 	     	}
