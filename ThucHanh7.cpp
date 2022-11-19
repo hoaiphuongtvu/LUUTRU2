@@ -96,7 +96,7 @@ void tongsnt(int *a, int n)
 void gtbx(int *a, int n)
   {
   	int x,y=0;
-     printf("\n nhap gtri x =");
+     printf("\nNhap gtri x can tim: ");
      scanf("%d",&x);
  	for(int i=0; i<n ; i++) 
 	    {
