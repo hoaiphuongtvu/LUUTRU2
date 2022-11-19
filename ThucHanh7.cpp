@@ -5,9 +5,13 @@ void nhap1c(int *a, int n);
 void xuat1c(int *a, int n);
 void giatriln(int *a, int n);
 void ttich(int *a, int n);
+void sx(int *a, int n);
 void snt(int *a, int n);
 void tongsnt(int *a, int n);
 void gtbx(int a[], int n);
+
+
+
 int main()
 {   
 	int *a, n, m;
@@ -18,6 +22,7 @@ int main()
 	xuat1c(a,n);
 	giatriln(a,n);
 	ttich(a,n);
+	sx(a,n);
 	snt(a,n);
     tongsnt(a,n);
     gtbx(a,n);
@@ -112,4 +117,22 @@ void gtbx(int *a, int n)
      if (y==0) printf("\n\nKhong gia tri nao trong mang bang x") ;
      
  }
- 
+void sx(int a[], int n)
+{
+	int t;
+	for(int i=0;i<n-1;i++)
+		for(int j=i+1;j<n;j++)
+		{
+			if(a[i]>a[j])
+			{
+				t=a[i];
+				a[i]=a[j];
+				a[j]=t;
+			}
+		}
+		printf("\nMang da sap xep la: \n");
+	{
+	for(int i=0;i<n;i++)
+	printf("a[%d] = %d\n",i,a[i]);
+	}
+}
