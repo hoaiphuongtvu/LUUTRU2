@@ -26,7 +26,7 @@ int main()
     Nhap2c(a, m, n);
     Xuat2c(a, m, n);
     printf("\nPhan tu lon nhat la %d", PhanTuLonNhat(a, m, n));
-    printf("\nPhan tu nho nhat la %d", PhanTuNhoNhat(a, m, n));
+    printf("\nPhan tu nho nhat la %d\n", PhanTuNhoNhat(a, m, n));
     snt(a, m, n);
     tongsnt(a, m, n);
     gtbx(a, m, n);
@@ -107,7 +107,7 @@ int tongsnt(int **a, int m,int n)
 			 if (ktnt(a[i][j])==1)
 				s+=a[i][j];	 
 		}
-	 printf("\nTong cac so nguyen to la %d",s);
+	 printf("\n\nTong cac so nguyen to la %d",s);
 }
 int gtbx(int **a, int m, int n)
 {
