@@ -6,6 +6,7 @@ int PhanTuLonNhat(int **a, int m, int n);
 int PhanTuNhoNhat(int **a, int m, int n);
 int snt(int **a,int m,int n);
 int tongsnt(int **a, int m,int n);
+int gtbx(int **a, int m, int n);
 
 int main()
 {
@@ -26,6 +27,7 @@ int main()
     printf("\nPhan tu nho nhat la %d", PhanTuNhoNhat(a, m, n));
     snt(a, m, n);
     tongsnt(a, m, n);
+    gtbx(a, m, n);
     return 0;
 }
 
@@ -102,3 +104,22 @@ int tongsnt(int **a, int m,int n)
 		}
 	 printf("\nTong cac so nguyen to la %d",s);
 }
+int gtbx(int **a, int m, int n)
+  {
+  	int x,y=0;
+     printf("\nNhap gtri x can tim: ");
+     scanf("%d",&x);
+ 	for(int i=0; i<m ; i++) 
+	    {
+	    	for(int j=0; j<n;j++)
+	     	if(a[i][j]==x) 
+	     	{
+	     	   printf("\nGia tri can tim tai vi tri a[%d][%d]",i,j);
+	     	 
+	     	   y++;
+	     	}
+		
+	    }
+     if (y==0) printf("\n\nKhong gia tri nao trong mang bang x") ;
+     
+ }
