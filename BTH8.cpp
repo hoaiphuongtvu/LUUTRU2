@@ -8,6 +8,7 @@ int snt(int **a,int m,int n);
 int tongsnt(int **a, int m,int n);
 int gtbx(int **a, int m, int n);
 int sx(int **a, int m, int n);
+double Tong(int **a, int m, int n);
 
 int main()
 {
@@ -30,6 +31,8 @@ int main()
     tongsnt(a, m, n);
     gtbx(a, m, n);
     sx(a, m, n);
+    double kq=Tong(a,m,n);
+	printf("\nTong cac phan tu tren duong cheo chinh %8.2f",kq);
     return 0;
 }
 
@@ -153,4 +156,17 @@ int sx(int **a,int m,int n)
             printf("%5d", a[i][j]);
         printf("\n");
     }
+}
+double Tong(int **a, int m,int n)
+{
+	double sum=0;
+	for(int i=0;i<n;i++)
+	{
+		for(int j = 0; j < n ; j++)
+		{
+			if (i==j)
+		sum=sum+a[i][j];
+		}
+	}
+	return sum;
 }
