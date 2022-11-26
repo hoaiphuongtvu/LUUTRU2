@@ -7,6 +7,7 @@ int PhanTuNhoNhat(int **a, int m, int n);
 int snt(int **a,int m,int n);
 int tongsnt(int **a, int m,int n);
 int gtbx(int **a, int m, int n);
+int sx(int **a, int m, int n);
 
 int main()
 {
@@ -28,6 +29,7 @@ int main()
     snt(a, m, n);
     tongsnt(a, m, n);
     gtbx(a, m, n);
+    sx(a, m, n);
     return 0;
 }
 
@@ -47,7 +49,7 @@ int Xuat2c(int **a, int m, int n)
     for (i = 0; i < m; i++)
     {
         for (j = 0; j < n; j++)
-            printf("%5d", a[i][j]);
+        printf("%5d", a[i][j]);
         printf("\n");
     }
 }
@@ -105,7 +107,7 @@ int tongsnt(int **a, int m,int n)
 	 printf("\nTong cac so nguyen to la %d",s);
 }
 int gtbx(int **a, int m, int n)
-  {
+{
   	int x,y=0;
      printf("\nNhap gtri x can tim: ");
      scanf("%d",&x);
@@ -122,4 +124,33 @@ int gtbx(int **a, int m, int n)
 	    }
      if (y==0) printf("\n\nKhong gia tri nao trong mang bang x") ;
      
- }
+}
+int sx(int **a,int m,int n)
+{
+  int i,j;
+  float tg;
+  float mangtg[m*n];
+  for(i=0; i<m*n; i++)
+  {
+    mangtg[i]=a[i/n][i%n];
+  }
+  for(i=0; i<m*n-1; i++){
+    for(j=m*n-1; j>i; j--){
+      if(mangtg[i]>mangtg[j]){
+        tg=mangtg[i];
+        mangtg[i]=mangtg[j];
+        mangtg[j]=tg;
+      }
+    }
+  }
+  for(i=0; i<m*n; i++){
+    a[i/n][i%n]=mangtg[i];
+  }
+  printf("\nMang da sap xep la: \n");
+  for (i = 0; i < m; i++)
+    {
+        for (j = 0; j < n; j++)
+            printf("%5d", a[i][j]);
+        printf("\n");
+    }
+}
