@@ -17,8 +17,6 @@ struct SinhVien
 };
 
 typedef struct SinhVien SINHVIEN;
-void TIMSV(SINHVIEN a[], int n);
-void INGX(SINHVIEN a[], int n);
 void Sapxep(SINHVIEN a[], int n);
 void Nhapsv(SINHVIEN &x);
 void NhapsvN(SINHVIEN a[], int n);
