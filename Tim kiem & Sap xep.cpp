@@ -70,15 +70,40 @@
 		else
 		return i;
 	}
-		
+	void chen(int a[], int n)
+{
+	int v,i,x;
+    printf("\nNhap gia tri can chen n:"); 
+    scanf("%d", &n);
+    v=0; 
+    i=0;
+    while(a[i]>x)
+    {    
+        i++;
+    } 
+    v=i;    
+    for(i=n-1;i>=v;i--)
+    {
+        a[i+1]=a[i];
+    }
+    a[v]=x;
+    printf("\nDay so sau khi chen la:");
+    for(i=0;i<n+1;i++)
+    {
+        printf("%5d", a[i]);
+    }	
+}
+
+
 int main()
 {
 		int a[10]; int n;int x;
-		printf("\nNhap phan tu n:");
+		int left;int right;
+		printf("\n Nhap so luong phan tu n:");
 		scanf("%d",&n);
 		nhapmang(a,n);
 		printf("\nMang da nhap la:");
-		xuatmang(a,n);	
+		xuatmang(a,n);
 		sapxep(a,n);
 		printf("\nMang da sap xep la:");
 		xuatmang(a,n);
@@ -86,6 +111,7 @@ int main()
 		if (result == -1)
      	printf("Khong tim thay so can tim trong mang",x);
  	 else
-   		printf("So can tim xuat hien tai vi tri so %d",result);
+   		printf("So can tim xuat hien tai vi tri thu &d",result);
+   		chen(a,n);
 		return 0;
 }
