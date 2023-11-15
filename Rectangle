@@ -1,10 +1,7 @@
+import java.util.Scanner;
+
 public class Circle {
     private double radius; // Thuộc tính bán kính
-
-    // Constructor
-    public Circle(double radius) {
-        this.radius = radius;
-    }
 
     // Getter và Setter cho bán kính
     public double getRadius() {
@@ -26,12 +23,18 @@ public class Circle {
     }
 
     public static void main(String[] args) {
-        // Tạo đối tượng Circle
-        Circle circle = new Circle(5); // Khởi tạo hình tròn với bán kính là 5
+        Scanner scanner = new Scanner(System.in);
 
-        // Lấy và hiển thị bán kính
-        double radius = circle.getRadius();
-        System.out.println("Bán kính của hình tròn: " + radius);
+        // Nhập bán kính từ người dùng
+        System.out.println("Nhập bán kính của hình tròn: ");
+        double radius = scanner.nextDouble();
+
+        // Tạo đối tượng Circle
+        Circle circle = new Circle();
+        circle.setRadius(radius);
+
+        // Hiển thị bán kính
+        System.out.println("Bán kính của hình tròn: " + circle.getRadius());
 
         // Tính và hiển thị diện tích
         double area = circle.calculateArea();
@@ -40,5 +43,7 @@ public class Circle {
         // Tính và hiển thị chu vi
         double perimeter = circle.calculatePerimeter();
         System.out.println("Chu vi của hình tròn: " + perimeter);
+
+        scanner.close();
     }
 }
