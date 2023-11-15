@@ -1,85 +1,30 @@
-public class QuadraticEquation {
-    private double a;
-    private double b;
-    private double c;
+import java.util.Date;
 
-    public QuadraticEquation() {
-        // Hàm tạo không tham số
+public class Employee {
+    private String lastName;
+    private Date birthDate;
+    private Date hireDate;
+
+    public Employee(String lastName, Date birthDate, Date hireDate) {
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.hireDate = hireDate;
     }
 
-    public QuadraticEquation(double a, double b, double c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+    public void displayEmployee() {
+        System.out.println("Họ: " + lastName);
+        System.out.println("Ngày sinh: " + birthDate);
+        System.out.println("Ngày vào làm: " + hireDate);
     }
 
-    public double getA() {
-        return a;
-    }
-
-    public void setA(double a) {
-        this.a = a;
-    }
-
-    public double getB() {
-        return b;
-    }
-
-    public void setB(double b) {
-        this.b = b;
-    }
-
-    public double getC() {
-        return c;
-    }
-
-    public void setC(double c) {
-        this.c = c;
-    }
-
-    public double calculateDelta() {
-        return b * b - 4 * a * c;
-    }
-
-    public void calculateRoots() {
-        double delta = calculateDelta();
-        if (delta > 0) {
-            double root1 = (-b + Math.sqrt(delta)) / (2 * a);
-            double root2 = (-b - Math.sqrt(delta)) / (2 * a);
-            System.out.println("Nghiệm thứ nhất: " + root1);
-            System.out.println("Nghiệm thứ hai: " + root2);
-        } else if (delta == 0) {
-            double root = -b / (2 * a);
-            System.out.println("Nghiệm kép: " + root);
-        } else {
-            System.out.println("Phương trình vô nghiệm.");
-        }
-    }
-public class Main {
     public static void main(String[] args) {
-        // Tạo đối tượng QuadraticEquation
-        QuadraticEquation equation1 = new QuadraticEquation();
-        QuadraticEquation equation2 = new QuadraticEquation(1, -3, 2);
+        // Đoạn mã này để minh họa cách sử dụng lớp Employee
+        // Tạo một đối tượng Employee
+        Date birthDate = new Date(1990, 10, 20); // Lưu ý: Date(int year, int month, int day) đã bị deprecated, nên sử dụng cách khác trong thực tế
+        Date hireDate = new Date(2020, 5, 10); // Tương tự như trên, nên sử dụng các cách tạo Date hiện đại hơn
+        Employee employee = new Employee("Smith", birthDate, hireDate);
 
-        // Thiết lập giá trị cho a, b, c
-        equation1.setA(2);
-        equation1.setB(-5);
-        equation1.setC(2);
-
-        // Lấy giá trị của a, b, c
-        System.out.println("Giá trị a của equation1 là: " + equation1.getA());
-        System.out.println("Giá trị b của equation1 là: " + equation1.getB());
-        System.out.println("Giá trị c của equation1 là: " + equation1.getC());
-
-        // Tính delta và nghiệm của phương trình
-        System.out.println("Delta của equation1 là: " + equation1.calculateDelta());
-        System.out.println("Nghiệm của equation1 là:");
-        equation1.calculateRoots();
-
-        System.out.println("Delta của equation2 là: " + equation2.calculateDelta());
-        System.out.println("Nghiệm của equation2 là:");
-        equation2.calculateRoots();
+        // Hiển thị thông tin nhân viên
+        employee.displayEmployee();
     }
-}
-
 }
