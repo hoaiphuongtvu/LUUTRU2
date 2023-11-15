@@ -1,48 +1,68 @@
 import java.util.Scanner;
 
-public class Circle {
-    private double radius; // Thuộc tính bán kính
+public class Employee {
+    private String name;
+    private String position;
+    private double salary;
 
-    // Getter và Setter cho bán kính
-    public double getRadius() {
-        return radius;
+    // Getter và Setter cho tên
+    public String getName() {
+        return name;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    // Phương thức tính diện tích hình tròn
-    public double calculateArea() {
-        return Math.PI * radius * radius;
+    // Getter và Setter cho chức vụ
+    public String getPosition() {
+        return position;
     }
 
-    // Phương thức tính chu vi hình tròn
-    public double calculatePerimeter() {
-        return 2 * Math.PI * radius;
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    // Getter và Setter cho mức lương
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    // Phương thức tính toán mức lương
+    public void calculateSalary() {
+        // Code tính toán mức lương theo logic của bạn
+        // Ví dụ đơn giản ở đây:
+        System.out.println("Mức lương của " + name + " là: " + salary);
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Nhập bán kính từ người dùng
-        System.out.println("Nhập bán kính của hình tròn: ");
-        double radius = scanner.nextDouble();
+        // Nhập thông tin từ người dùng
+        System.out.println("Nhập tên nhân viên: ");
+        String name = scanner.nextLine();
 
-        // Tạo đối tượng Circle
-        Circle circle = new Circle();
-        circle.setRadius(radius);
+        System.out.println("Nhập chức vụ: ");
+        String position = scanner.nextLine();
 
-        // Hiển thị bán kính
-        System.out.println("Bán kính của hình tròn: " + circle.getRadius());
+        System.out.println("Nhập mức lương: ");
+        double salary = scanner.nextDouble();
 
-        // Tính và hiển thị diện tích
-        double area = circle.calculateArea();
-        System.out.println("Diện tích của hình tròn: " + area);
+        // Tạo đối tượng Employee và thiết lập thông tin vừa nhập
+        Employee employee = new Employee();
+        employee.setName(name);
+        employee.setPosition(position);
+        employee.setSalary(salary);
 
-        // Tính và hiển thị chu vi
-        double perimeter = circle.calculatePerimeter();
-        System.out.println("Chu vi của hình tròn: " + perimeter);
+        // Hiển thị thông tin và tính toán mức lương
+        System.out.println("Thông tin nhân viên:");
+        System.out.println("Tên: " + employee.getName());
+        System.out.println("Chức vụ: " + employee.getPosition());
+        employee.calculateSalary();
 
         scanner.close();
     }
