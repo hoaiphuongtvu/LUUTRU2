@@ -1,36 +1,44 @@
-import java.util.Scanner;
+public class Circle {
+    private double radius; // Thuộc tính bán kính
 
-public class PrimeChecker {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        // Nhập số từ người dùng
-        System.out.println("Nhập một số nguyên dương: ");
-        int number = scanner.nextInt();
-
-        // Gọi hàm kiểm tra số nguyên tố
-        boolean isPrime = checkPrime(number);
-
-        // Hiển thị kết quả
-        if (isPrime) {
-            System.out.println(number + " là số nguyên tố.");
-        } else {
-            System.out.println(number + " không là số nguyên tố.");
-        }
-
-        scanner.close();
+    // Constructor
+    public Circle(double radius) {
+        this.radius = radius;
     }
 
-    // Hàm kiểm tra số nguyên tố
-    public static boolean checkPrime(int n) {
-        if (n <= 1) {
-            return false;
-        }
-        for (int i = 2; i <= Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
+    // Getter và Setter cho bán kính
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    // Phương thức tính diện tích hình tròn
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+
+    // Phương thức tính chu vi hình tròn
+    public double calculatePerimeter() {
+        return 2 * Math.PI * radius;
+    }
+
+    public static void main(String[] args) {
+        // Tạo đối tượng Circle
+        Circle circle = new Circle(5); // Khởi tạo hình tròn với bán kính là 5
+
+        // Lấy và hiển thị bán kính
+        double radius = circle.getRadius();
+        System.out.println("Bán kính của hình tròn: " + radius);
+
+        // Tính và hiển thị diện tích
+        double area = circle.calculateArea();
+        System.out.println("Diện tích của hình tròn: " + area);
+
+        // Tính và hiển thị chu vi
+        double perimeter = circle.calculatePerimeter();
+        System.out.println("Chu vi của hình tròn: " + perimeter);
     }
 }
