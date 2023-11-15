@@ -1,89 +1,94 @@
 import java.util.Scanner;
 
-public class QuadraticEquation {
-    private double a;
-    private double b;
-    private double c;
+public class Employee {
+    private String name;
+    private String position;
+    private double dailySalary;
+    private int totalDaysWorked;
+    private int totalDaysOff;
 
     // Constructors
-    public QuadraticEquation() {
+    public Employee(String name, String position, double dailySalary) {
+        this.name = name;
+        this.position = position;
+        this.dailySalary = dailySalary;
     }
 
-    public QuadraticEquation(double a, double b, double c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+    // Getter và Setter cho tên, chức vụ, mức lương ngày và số ngày làm việc/ngày nghỉ
+    // (Đây chỉ là ví dụ cơ bản, bạn có thể mở rộng hoặc thay đổi logic tính lương tùy theo yêu cầu)
+    public String getName() {
+        return name;
     }
 
-    // Getter và Setter cho a, b, c
-    public double getA() {
-        return a;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setA(double a) {
-        this.a = a;
+    public String getPosition() {
+        return position;
     }
 
-    public double getB() {
-        return b;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public void setB(double b) {
-        this.b = b;
+    public double getDailySalary() {
+        return dailySalary;
     }
 
-    public double getC() {
-        return c;
+    public void setDailySalary(double dailySalary) {
+        this.dailySalary = dailySalary;
     }
 
-    public void setC(double c) {
-        this.c = c;
+    public int getTotalDaysWorked() {
+        return totalDaysWorked;
     }
 
-    // Phương thức tính delta
-    public double calculateDelta() {
-        return b * b - 4 * a * c;
+    public void setTotalDaysWorked(int totalDaysWorked) {
+        this.totalDaysWorked = totalDaysWorked;
     }
 
-    // Phương thức tính nghiệm của phương trình bậc 2
-    public void calculateRoots() {
-        double delta = calculateDelta();
+    public int getTotalDaysOff() {
+        return totalDaysOff;
+    }
 
-        if (delta > 0) {
-            double x1 = (-b + Math.sqrt(delta)) / (2 * a);
-            double x2 = (-b - Math.sqrt(delta)) / (2 * a);
-            System.out.println("Phương trình có hai nghiệm phân biệt:");
-            System.out.println("x1 = " + x1);
-            System.out.println("x2 = " + x2);
-        } else if (delta == 0) {
-            double x = -b / (2 * a);
-            System.out.println("Phương trình có nghiệm kép:");
-            System.out.println("x = " + x);
-        } else {
-            System.out.println("Phương trình không có nghiệm thực.");
-        }
+    public void setTotalDaysOff(int totalDaysOff) {
+        this.totalDaysOff = totalDaysOff;
+    }
+
+    // Phương thức tính lương dựa trên số ngày làm việc và số ngày nghỉ
+    public double calculateSalary() {
+        double totalSalary = (totalDaysWorked * dailySalary) - (totalDaysOff * (dailySalary / 2)); // Giả sử ngày nghỉ giảm mức lương một nửa
+        return totalSalary;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Nhập các hệ số từ người dùng
-        System.out.println("Nhập hệ số a: ");
-        double a = scanner.nextDouble();
+        // Nhập thông tin từ người dùng
+        System.out.println("Nhập tên nhân viên: ");
+        String name = scanner.nextLine();
 
-        System.out.println("Nhập hệ số b: ");
-        double b = scanner.nextDouble();
+        System.out.println("Nhập chức vụ: ");
+        String position = scanner.nextLine();
 
-        System.out.println("Nhập hệ số c: ");
-        double c = scanner.nextDouble();
+        System.out.println("Nhập mức lương mỗi ngày: ");
+        double dailySalary = scanner.nextDouble();
 
-        // Tạo đối tượng phương trình bậc 2 và thiết lập hệ số
-        QuadraticEquation equation = new QuadraticEquation(a, b, c);
+        System.out.println("Nhập số ngày làm việc: ");
+        int totalDaysWorked = scanner.nextInt();
 
-        // Tính và hiển thị delta và nghiệm của phương trình
-        double delta = equation.calculateDelta();
-        System.out.println("Delta của phương trình: " + delta);
-        equation.calculateRoots();
+        System.out.println("Nhập số ngày nghỉ: ");
+        int totalDaysOff = scanner.nextInt();
+
+        // Tạo đối tượng Employee và thiết lập thông tin từ người dùng
+        Employee employee = new Employee(name, position, dailySalary);
+        employee.setTotalDaysWorked(totalDaysWorked);
+        employee.setTotalDaysOff(totalDaysOff);
+
+        // Tính và hiển thị lương của nhân viên
+        double salary = employee.calculateSalary();
+        System.out.println("Lương của " + employee.getName() + " là: " + salary);
 
         scanner.close();
     }
