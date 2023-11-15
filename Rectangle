@@ -1,68 +1,89 @@
 import java.util.Scanner;
 
-public class Employee {
-    private String name;
-    private String position;
-    private double salary;
+public class QuadraticEquation {
+    private double a;
+    private double b;
+    private double c;
 
-    // Getter và Setter cho tên
-    public String getName() {
-        return name;
+    // Constructors
+    public QuadraticEquation() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public QuadraticEquation(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
 
-    // Getter và Setter cho chức vụ
-    public String getPosition() {
-        return position;
+    // Getter và Setter cho a, b, c
+    public double getA() {
+        return a;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setA(double a) {
+        this.a = a;
     }
 
-    // Getter và Setter cho mức lương
-    public double getSalary() {
-        return salary;
+    public double getB() {
+        return b;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setB(double b) {
+        this.b = b;
     }
 
-    // Phương thức tính toán mức lương
-    public void calculateSalary() {
-        // Code tính toán mức lương theo logic của bạn
-        // Ví dụ đơn giản ở đây:
-        System.out.println("Mức lương của " + name + " là: " + salary);
+    public double getC() {
+        return c;
+    }
+
+    public void setC(double c) {
+        this.c = c;
+    }
+
+    // Phương thức tính delta
+    public double calculateDelta() {
+        return b * b - 4 * a * c;
+    }
+
+    // Phương thức tính nghiệm của phương trình bậc 2
+    public void calculateRoots() {
+        double delta = calculateDelta();
+
+        if (delta > 0) {
+            double x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            double x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            System.out.println("Phương trình có hai nghiệm phân biệt:");
+            System.out.println("x1 = " + x1);
+            System.out.println("x2 = " + x2);
+        } else if (delta == 0) {
+            double x = -b / (2 * a);
+            System.out.println("Phương trình có nghiệm kép:");
+            System.out.println("x = " + x);
+        } else {
+            System.out.println("Phương trình không có nghiệm thực.");
+        }
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Nhập thông tin từ người dùng
-        System.out.println("Nhập tên nhân viên: ");
-        String name = scanner.nextLine();
+        // Nhập các hệ số từ người dùng
+        System.out.println("Nhập hệ số a: ");
+        double a = scanner.nextDouble();
 
-        System.out.println("Nhập chức vụ: ");
-        String position = scanner.nextLine();
+        System.out.println("Nhập hệ số b: ");
+        double b = scanner.nextDouble();
 
-        System.out.println("Nhập mức lương: ");
-        double salary = scanner.nextDouble();
+        System.out.println("Nhập hệ số c: ");
+        double c = scanner.nextDouble();
 
-        // Tạo đối tượng Employee và thiết lập thông tin vừa nhập
-        Employee employee = new Employee();
-        employee.setName(name);
-        employee.setPosition(position);
-        employee.setSalary(salary);
+        // Tạo đối tượng phương trình bậc 2 và thiết lập hệ số
+        QuadraticEquation equation = new QuadraticEquation(a, b, c);
 
-        // Hiển thị thông tin và tính toán mức lương
-        System.out.println("Thông tin nhân viên:");
-        System.out.println("Tên: " + employee.getName());
-        System.out.println("Chức vụ: " + employee.getPosition());
-        employee.calculateSalary();
+        // Tính và hiển thị delta và nghiệm của phương trình
+        double delta = equation.calculateDelta();
+        System.out.println("Delta của phương trình: " + delta);
+        equation.calculateRoots();
 
         scanner.close();
     }
