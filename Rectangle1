@@ -1,0 +1,31 @@
+public class Main {
+    public static void main(String[] args) {
+        // Tạo đối tượng Rectangle
+        Rectangle rectangle1 = new Rectangle();
+        Rectangle rectangle2 = new Rectangle(15, 8);
+
+        // Hiển thị thông tin hình chữ nhật
+        rectangle1.displayRectangle();
+        rectangle2.displayRectangle();
+
+        // Đặt lại chiều dài và chiều rộng
+        rectangle1.setLength(12);
+        rectangle1.setWidth(6);
+
+        // Hiển thị chiều dài và chiều rộng
+        System.out.println("Chiều dài của rectangle1 là: " + rectangle1.getLength());
+        System.out.println("Chiều rộng của rectangle1 là: " + rectangle1.getWidth());
+
+        // Tính và hiển thị chu vi, diện tích, đường chéo
+        System.out.println("Chu vi của rectangle1 là: " + rectangle1.calculatePerimeter());
+        System.out.println("Diện tích của rectangle1 là: " + rectangle1.calculateArea());
+        System.out.println("Đường chéo của rectangle1 là: " + rectangle1.calculateDiagonal());
+
+        // Kiểm tra xem rectangle1 có phải hình vuông không
+        System.out.println("rectangle1 có phải hình vuông không? " + rectangle1.isSquare());
+
+        // Vẽ hình chữ nhật
+        System.out.println("Vẽ hình chữ nhật rectangle1:");
+        rectangle1.drawRectangle('*');
+    }
+}
