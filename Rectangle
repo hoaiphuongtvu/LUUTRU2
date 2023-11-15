@@ -1,32 +1,36 @@
 import java.util.Scanner;
 
-public class Main {
+public class PrimeChecker {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Nhập hai số từ người dùng
-        System.out.println("Nhập số thứ nhất: ");
-        int number1 = scanner.nextInt();
+        // Nhập số từ người dùng
+        System.out.println("Nhập một số nguyên dương: ");
+        int number = scanner.nextInt();
 
-        System.out.println("Nhập số thứ hai: ");
-        int number2 = scanner.nextInt();
+        // Gọi hàm kiểm tra số nguyên tố
+        boolean isPrime = checkPrime(number);
 
-        // Tìm ước chung lớn nhất và ước chung nhỏ nhất của hai số
-        int gcd = findGCD(number1, number2);
-        int lcm = (number1 * number2) / gcd;
-
-        // Hiển thị ước chung lớn nhất và ước chung nhỏ nhất
-        System.out.println("Ước chung lớn nhất của " + number1 + " và " + number2 + " là: " + gcd);
-        System.out.println("Ước chung nhỏ nhất của " + number1 + " và " + number2 + " là: " + lcm);
+        // Hiển thị kết quả
+        if (isPrime) {
+            System.out.println(number + " là số nguyên tố.");
+        } else {
+            System.out.println(number + " không là số nguyên tố.");
+        }
 
         scanner.close();
     }
 
-    // Hàm tìm ước chung lớn nhất
-    public static int findGCD(int a, int b) {
-        if (b == 0) {
-            return a;
+    // Hàm kiểm tra số nguyên tố
+    public static boolean checkPrime(int n) {
+        if (n <= 1) {
+            return false;
         }
-        return findGCD(b, a % b);
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
