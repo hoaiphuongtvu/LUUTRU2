@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Employee {
@@ -17,14 +20,28 @@ public class Employee {
         System.out.println("Ngày vào làm: " + hireDate);
     }
 
-    public static void main(String[] args) {
-        // Đoạn mã này để minh họa cách sử dụng lớp Employee
-        // Tạo một đối tượng Employee
-        Date birthDate = new Date(1990, 10, 20); // Lưu ý: Date(int year, int month, int day) đã bị deprecated, nên sử dụng cách khác trong thực tế
-        Date hireDate = new Date(2020, 5, 10); // Tương tự như trên, nên sử dụng các cách tạo Date hiện đại hơn
-        Employee employee = new Employee("Smith", birthDate, hireDate);
+    public static void main(String[] args) throws ParseException {
+        Scanner scanner = new Scanner(System.in);
+
+        // Nhập thông tin từ người dùng
+        System.out.println("Nhập họ của nhân viên: ");
+        String lastName = scanner.nextLine();
+
+        System.out.println("Nhập ngày sinh của nhân viên (yyyy-MM-dd): ");
+        String birthDateString = scanner.nextLine();
+        SimpleDateFormat birthDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthDate = birthDateFormat.parse(birthDateString);
+
+        System.out.println("Nhập ngày vào làm của nhân viên (yyyy-MM-dd): ");
+        String hireDateString = scanner.nextLine();
+        Date hireDate = birthDateFormat.parse(hireDateString);
+
+        // Tạo đối tượng Employee với thông tin vừa nhập
+        Employee employee = new Employee(lastName, birthDate, hireDate);
 
         // Hiển thị thông tin nhân viên
         employee.displayEmployee();
+
+        scanner.close();
     }
 }
