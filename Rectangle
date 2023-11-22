@@ -1,29 +1,65 @@
-import java.util.Scanner;
+public abstract class Employee {
+    // Các thành viên và phương thức như đã mô tả trong yêu cầu của bạn
+    // ...
+    public abstract double earnings();
+    // ...
+}
+public class SalariedEmployee extends Employee {
+    private double weeklySalary;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public SalariedEmployee(double weeklySalary) {
+        this.weeklySalary = weeklySalary;
+    }
 
-        // Nhập thông tin cho Salaried Employee
-        System.out.println("Nhập thông tin cho Salaried Employee:");
-        System.out.print("First Name: ");
-        String firstName = scanner.nextLine();
-        System.out.print("Last Name: ");
-        String lastName = scanner.nextLine();
-        System.out.print("Social Security Number: ");
-        String socialSecurityNumber = scanner.nextLine();
-        System.out.print("Weekly Salary: ");
-        double weeklySalary = scanner.nextDouble();
+    @Override
+    public double earnings() {
+        return weeklySalary;
+    }
+}
+public class HourlyEmployee extends Employee {
+    private double hourlyRate;
+    private double hoursWorked;
 
-        // Tạo đối tượng Salaried Employee với thông tin vừa nhập
-        SalariedEmployee salariedEmployee = new SalariedEmployee(firstName, lastName, socialSecurityNumber, weeklySalary);
+    public HourlyEmployee(double hourlyRate, double hoursWorked) {
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
 
-        // Hiển thị lương của Salaried Employee
-        System.out.println("Lương của Salaried Employee: " + salariedEmployee.earnings());
+    @Override
+    public double earnings() {
+        if (hoursWorked <= 40) {
+            return hourlyRate * hoursWorked;
+        } else {
+            double normalPay = hourlyRate * 40;
+            double extraPay = (hoursWorked - 40) * hourlyRate * 1.5;
+            return normalPay + extraPay;
+        }
+    }
+}
+public class CommissionEmployee extends Employee {
+    private double sales;
+    private double commissionRate;
 
-        // Tương tự, bạn có thể nhập thông tin cho các loại nhân viên khác và tính lương tương ứng
-        // ... (Nhập thông tin cho các loại nhân viên khác và tính toán lương tương ứng)
-        
-        scanner.close();
+    public CommissionEmployee(double sales, double commissionRate) {
+        this.sales = sales;
+        this.commissionRate = commissionRate;
+    }
+
+    @Override
+    public double earnings() {
+        return sales * commissionRate;
+    }
+}
+public class BasePlusCommissionEmployee extends CommissionEmployee {
+    private double baseSalary;
+
+    public BasePlusCommissionEmployee(double sales, double commissionRate, double baseSalary) {
+        super(sales, commissionRate);
+        this.baseSalary = baseSalary;
+    }
+
+    @Override
+    public double earnings() {
+        return super.earnings() + baseSalary;
     }
 }
