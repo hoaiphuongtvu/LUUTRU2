@@ -1,29 +1,15 @@
-public class BasePlusCommissionEmployee extends CommissionEmployee {
-    private double baseSalary;
+public class Main {
+    public static void main(String[] args) {
+        // Tạo các đối tượng nhân viên
+        SalariedEmployee salariedEmployee = new SalariedEmployee("John", "Doe", "123-456-7890", 1000);
+        HourlyEmployee hourlyEmployee = new HourlyEmployee("Jane", "Smith", "987-654-3210", 15, 45);
+        CommissionEmployee commissionEmployee = new CommissionEmployee("Mike", "Johnson", "555-555-5555", 2000, 0.15);
+        BasePlusCommissionEmployee basePlusCommissionEmployee = new BasePlusCommissionEmployee("Alice", "Williams", "444-444-4444", 3000, 0.1, 500);
 
-    // Constructor mặc định với tham số mặc định baseSalary = 0
-    public BasePlusCommissionEmployee() {
-        this.baseSalary = 0;
-    }
-
-    // Constructor với tham số baseSalary, grossSales và commissionRate
-    public BasePlusCommissionEmployee(String firstName, String lastName, String socialSecurityNumber, double grossSales, double commissionRate, double baseSalary) {
-        super(firstName, lastName, socialSecurityNumber, grossSales, commissionRate);
-        this.baseSalary = baseSalary;
-    }
-
-    // Phương thức get/set cho baseSalary
-    public double getBaseSalary() {
-        return baseSalary;
-    }
-
-    public void setBaseSalary(double baseSalary) {
-        this.baseSalary = baseSalary;
-    }
-
-    // Override phương thức earnings() từ lớp CommissionEmployee
-    @Override
-    public double earnings() {
-        return super.earnings() + baseSalary;
+        // Tính lương cho từng loại nhân viên
+        System.out.println("Lương của Salaried Employee: " + salariedEmployee.earnings());
+        System.out.println("Lương của Hourly Employee: " + hourlyEmployee.earnings());
+        System.out.println("Lương của Commission Employee: " + commissionEmployee.earnings());
+        System.out.println("Lương của Base Plus Commission Employee: " + basePlusCommissionEmployee.earnings());
     }
 }
