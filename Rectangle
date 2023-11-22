@@ -1,15 +1,29 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Tạo các đối tượng nhân viên
-        SalariedEmployee salariedEmployee = new SalariedEmployee("John", "Doe", "123-456-7890", 1000);
-        HourlyEmployee hourlyEmployee = new HourlyEmployee("Jane", "Smith", "987-654-3210", 15, 45);
-        CommissionEmployee commissionEmployee = new CommissionEmployee("Mike", "Johnson", "555-555-5555", 2000, 0.15);
-        BasePlusCommissionEmployee basePlusCommissionEmployee = new BasePlusCommissionEmployee("Alice", "Williams", "444-444-4444", 3000, 0.1, 500);
+        Scanner scanner = new Scanner(System.in);
 
-        // Tính lương cho từng loại nhân viên
+        // Nhập thông tin cho Salaried Employee
+        System.out.println("Nhập thông tin cho Salaried Employee:");
+        System.out.print("First Name: ");
+        String firstName = scanner.nextLine();
+        System.out.print("Last Name: ");
+        String lastName = scanner.nextLine();
+        System.out.print("Social Security Number: ");
+        String socialSecurityNumber = scanner.nextLine();
+        System.out.print("Weekly Salary: ");
+        double weeklySalary = scanner.nextDouble();
+
+        // Tạo đối tượng Salaried Employee với thông tin vừa nhập
+        SalariedEmployee salariedEmployee = new SalariedEmployee(firstName, lastName, socialSecurityNumber, weeklySalary);
+
+        // Hiển thị lương của Salaried Employee
         System.out.println("Lương của Salaried Employee: " + salariedEmployee.earnings());
-        System.out.println("Lương của Hourly Employee: " + hourlyEmployee.earnings());
-        System.out.println("Lương của Commission Employee: " + commissionEmployee.earnings());
-        System.out.println("Lương của Base Plus Commission Employee: " + basePlusCommissionEmployee.earnings());
+
+        // Tương tự, bạn có thể nhập thông tin cho các loại nhân viên khác và tính lương tương ứng
+        // ... (Nhập thông tin cho các loại nhân viên khác và tính toán lương tương ứng)
+        
+        scanner.close();
     }
 }
