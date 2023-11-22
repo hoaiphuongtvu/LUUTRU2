@@ -1,40 +1,29 @@
-public class CommissionEmployee extends Employee {
-    private double grossSales;
-    private double commissionRate;
+public class BasePlusCommissionEmployee extends CommissionEmployee {
+    private double baseSalary;
 
-    // Constructor mặc định với tham số mặc định grossSales = 0 và commissionRate = 0
-    public CommissionEmployee() {
-        this.grossSales = 0;
-        this.commissionRate = 0;
+    // Constructor mặc định với tham số mặc định baseSalary = 0
+    public BasePlusCommissionEmployee() {
+        this.baseSalary = 0;
     }
 
-    // Constructor với tham số grossSales và commissionRate
-    public CommissionEmployee(String firstName, String lastName, String socialSecurityNumber, double grossSales, double commissionRate) {
-        super(firstName, lastName, socialSecurityNumber);
-        this.grossSales = grossSales;
-        this.commissionRate = commissionRate;
+    // Constructor với tham số baseSalary, grossSales và commissionRate
+    public BasePlusCommissionEmployee(String firstName, String lastName, String socialSecurityNumber, double grossSales, double commissionRate, double baseSalary) {
+        super(firstName, lastName, socialSecurityNumber, grossSales, commissionRate);
+        this.baseSalary = baseSalary;
     }
 
-    // Phương thức get/set cho grossSales và commissionRate
-    public double getGrossSales() {
-        return grossSales;
+    // Phương thức get/set cho baseSalary
+    public double getBaseSalary() {
+        return baseSalary;
     }
 
-    public void setGrossSales(double grossSales) {
-        this.grossSales = grossSales;
+    public void setBaseSalary(double baseSalary) {
+        this.baseSalary = baseSalary;
     }
 
-    public double getCommissionRate() {
-        return commissionRate;
-    }
-
-    public void setCommissionRate(double commissionRate) {
-        this.commissionRate = commissionRate;
-    }
-
-    // Override phương thức earnings() từ lớp Employee
+    // Override phương thức earnings() từ lớp CommissionEmployee
     @Override
     public double earnings() {
-        return grossSales * commissionRate;
+        return super.earnings() + baseSalary;
     }
 }
