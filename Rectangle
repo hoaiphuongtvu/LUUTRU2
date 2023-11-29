@@ -12,35 +12,30 @@ public abstract class Employee {
 
     // Các phương thức get và set
 
-    // ... (giữ nguyên như trước)
     public String getFirstName() {
         return firstName;
     }
 
     public void setFirstName(String firstName) {
-        
-        thi
-this.firstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
-        
-      
-this.lastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getSocialSecurityNumber() {
-        
-        r
-return socialSecurityNumber;
+        return socialSecurityNumber;
     }
 
     public void setSocialSecurityNumber(String socialSecurityNumber) {
         this.socialSecurityNumber = socialSecurityNumber;
     }
+
     // Phương thức thuần ảo earnings()
     public abstract double earnings();
 
