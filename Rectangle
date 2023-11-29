@@ -82,3 +82,36 @@ public class QLCB {
                     } else if (loaiCanBo == 2) {
                         System.out.println("Nhập ngành đào tạo:");
               
+String nganhDaoTao = scanner.nextLine();
+
+                        KySu kySu = new KySu(hoTen, tuoi, gioiTinh, diaChi, nganhDaoTao);
+                        qlcb.themMoiCanBo(kySu);
+                    } else if (loaiCanBo == 3) {
+                        System.out.println("Nhập công việc:");
+                        String congViec = scanner.nextLine();
+
+                        NhanVien nhanVien = new NhanVien(hoTen, tuoi, gioiTinh, diaChi, congViec);
+                        qlcb.themMoiCanBo(nhanVien);
+                    }
+
+                    System.out.println("Thêm mới cán bộ thành công!");
+                    break;
+                case 2:
+                    System.out.println("Nhập họ tên cần tìm kiếm:");
+                    String hoTenTimKiem = scanner.nextLine();
+                    qlcb.timKiemTheoHoTen(hoTenTimKiem);
+                    break;
+                case 3:
+                    qlcb.hienThiDanhSachCanBo();
+                    break;
+                case 4:
+                    System.out.println("Đã thoát chương trình.");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+                    break;
+            }
+        }
+    }
+}
