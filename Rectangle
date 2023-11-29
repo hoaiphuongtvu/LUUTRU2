@@ -1,92 +1,36 @@
-// Lớp cơ sở Employee
-public abstract class Employee {
-    private String firstName;
-    private String lastName;
-    private String socialSecurityNumber;
+// Lớp SalariedEmployee kế thừa từ Employee
+public class SalariedEmployee extends Employee {
+    private double weeklySalary;
 
-    public Employee(String firstName, String lastName, String socialSecurityNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.socialSecurityNumber = socialSecurityNumber;
-    }
-
-    // Các phương thức get và set
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getSocialSecurityNumber() {
-        return socialSecurityNumber;
-    }
-
-    public void setSocialSecurityNumber(String socialSecurityNumber) {
-        this.socialSecurityNumber = socialSecurityNumber;
-    }
-
-    // Phương thức gấp đôi thu nhập (trừu tượng)
-    public abstract double calculateEarnings();
-
-    // Phương thức in thông tin
-    public void print() {
-        System.out.println("Employee: " + firstName + " " + lastName +
-                "\nSSN: " + socialSecurityNumber);
-    }
-}
-
-// Lớp HourlyEmployee kế thừa từ Employee
-public class HourlyEmployee extends Employee {
-    private double hourlyWage;
-    private double hoursWorked;
-
-    public HourlyEmployee(String firstName, String lastName, String socialSecurityNumber,
-                          double hourlyWage, double hoursWorked) {
+    public SalariedEmployee(String firstName, String lastName, String socialSecurityNumber) {
         super(firstName, lastName, socialSecurityNumber);
-        this.hourlyWage = hourlyWage;
-        this.hoursWorked = hoursWorked;
+        this.weeklySalary = 0; // Giá trị mặc định
     }
 
-    // Override phương thức calculateEarnings cho HourlyEmployee
+    public SalariedEmployee(String firstName, String lastName, String socialSecurityNumber, double weeklySalary) {
+        super(firstName, lastName, socialSecurityNumber);
+        this.weeklySalary = weeklySalary;
+    }
+
+    // Phương thức set/get cho weeklySalary
+    public double getWeeklySalary() {
+        return weeklySalary;
+    }
+
+    public void setWeeklySalary(double weeklySalary) {
+        this.weeklySalary = weeklySalary;
+    }
+
+    // Override phương thức calculateEarnings cho SalariedEmployee
     @Override
     public double calculateEarnings() {
-        double earnings;
-        if (hoursWorked <= 40) {
-            earnings = hoursWorked * hourlyWage;
-        } else {
-            earnings = 40 * hourlyWage + (hoursWorked - 40) * hourlyWage * 1.5;
-        }
-        return earnings;
+        return weeklySalary;
     }
 
     // Override phương thức in thông tin
     @Override
     public void print() {
         super.print();
-        System.out.println("Hourly Employee");
-    }
-}
-
-// Tương tự, triển khai các lớp khác như CommissionEmployee, BasePlusCommissionEmployee
-
-// Ví dụ sử dụng:
-public class Main {
-    public static void main(String[] args) {
-        // Tạo một đối tượng HourlyEmployee
-        HourlyEmployee employee = new HourlyEmployee("John", "Doe", "123-45-6789", 20.0, 45);
-        
-        // In thông tin và thu nhập của nhân viên theo giờ
-        employee.print();
-        System.out.println("Earnings: $" + employee.calculateEarnings());
+        System.out.println("Salaried Employee");
     }
 }
