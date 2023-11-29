@@ -1,13 +1,61 @@
+// Lớp cơ sở abstract Employee
 public abstract class Employee {
-    // Các thành viên và phương thức như đã mô tả trong yêu cầu của bạn
-    // ...
+    private String firstName;
+    private String lastName;
+    private String socialSecurityNumber;
+
+    public Employee(String firstName, String lastName, String socialSecurityNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.socialSecurityNumber = socialSecurityNumber;
+    }
+
+    // Các phương thức get và set
+
+    // ... (giữ nguyên như trước)
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        
+        thi
+this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        
+      
+this.lastName = lastName;
+    }
+
+    public String getSocialSecurityNumber() {
+        
+        r
+return socialSecurityNumber;
+    }
+
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
+    }
+    // Phương thức thuần ảo earnings()
     public abstract double earnings();
-    // ...
+
+    // Phương thức đa hình print()
+    public void print() {
+        System.out.println("Employee: " + firstName + " " + lastName + "\nSocial Security Number: " + socialSecurityNumber);
+    }
 }
+
+// Lớp SalariedEmployee kế thừa từ Employee
 public class SalariedEmployee extends Employee {
     private double weeklySalary;
 
-    public SalariedEmployee(double weeklySalary) {
+    public SalariedEmployee(String firstName, String lastName, String socialSecurityNumber, double weeklySalary) {
+        super(firstName, lastName, socialSecurityNumber);
         this.weeklySalary = weeklySalary;
     }
 
@@ -15,51 +63,52 @@ public class SalariedEmployee extends Employee {
     public double earnings() {
         return weeklySalary;
     }
-}
-public class HourlyEmployee extends Employee {
-    private double hourlyRate;
-    private double hoursWorked;
 
-    public HourlyEmployee(double hourlyRate, double hoursWorked) {
-        this.hourlyRate = hourlyRate;
-        this.hoursWorked = hoursWorked;
+    @Override
+    public void print() {
+        super.print();
+        System.out.println("Earnings: $" + earnings() + " per week");
+    }
+}
+
+// Lớp HourlyEmployee kế thừa từ Employee
+public class HourlyEmployee extends Employee {
+    private double wage;
+    private double hours;
+
+    public HourlyEmployee(String firstName, String lastName, String socialSecurityNumber, double wage, double hours) {
+        super(firstName, lastName, socialSecurityNumber);
+        this.wage = wage;
+        this.hours = hours;
     }
 
     @Override
     public double earnings() {
-        if (hoursWorked <= 40) {
-            return hourlyRate * hoursWorked;
+        if (hours <= 40) {
+            return wage * hours;
         } else {
-            double normalPay = hourlyRate * 40;
-            double extraPay = (hoursWorked - 40) * hourlyRate * 1.5;
-            return normalPay + extraPay;
+            return (40 * wage) + ((hours - 40) * wage * 1.5);
         }
     }
-}
-public class CommissionEmployee extends Employee {
-    private double sales;
-    private double commissionRate;
-
-    public CommissionEmployee(double sales, double commissionRate) {
-        this.sales = sales;
-        this.commissionRate = commissionRate;
-    }
 
     @Override
-    public double earnings() {
-        return sales * commissionRate;
+    public void print() {
+        super.print();
+        System.out.println("Earnings: $" + earnings() + " for the week");
     }
 }
-public class BasePlusCommissionEmployee extends CommissionEmployee {
-    private double baseSalary;
 
-    public BasePlusCommissionEmployee(double sales, double commissionRate, double baseSalary) {
-        super(sales, commissionRate);
-        this.baseSalary = baseSalary;
-    }
+// Tương tự, triển khai cho CommissionEmployee và BasePlusCommissionEmployee
 
-    @Override
-    public double earnings() {
-        return super.earnings() + baseSalary;
+// Ví dụ sử dụng
+public class Main {
+    public static void main(String[] args) {
+        SalariedEmployee salariedEmployee = new SalariedEmployee("John", "Doe", "123-45-6789", 1200.0);
+        salariedEmployee.print();
+
+        HourlyEmployee hourlyEmployee = new HourlyEmployee("Jane", "Smith", "987-65-4321", 15.0, 45.0);
+        hourlyEmployee.print();
+
+        // Tạo và sử dụng các đối tượng của các lớp khác tương tự
     }
 }
