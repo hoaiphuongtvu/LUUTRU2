@@ -1,36 +1,191 @@
-// Lớp SalariedEmployee kế thừa từ Employee
-public class SalariedEmployee extends Employee {
-    private double weeklySalary;
+CREATE DATABASE QLSV
+USE QLSV
 
-    public SalariedEmployee(String firstName, String lastName, String socialSecurityNumber) {
-        super(firstName, lastName, socialSecurityNumber);
-        this.weeklySalary = 0; // Giá trị mặc định
-    }
+CREATE TABLE CT_Daotao
+(
+MaCTDT varchar(10)NOT NULL,
+TenCTDT nvarchar(50)
+)
 
-    public SalariedEmployee(String firstName, String lastName, String socialSecurityNumber, double weeklySalary) {
-        super(firstName, lastName, socialSecurityNumber);
-        this.weeklySalary = weeklySalary;
-    }
 
-    // Phương thức set/get cho weeklySalary
-    public double getWeeklySalary() {
-        return weeklySalary;
-    }
 
-    public void setWeeklySalary(double weeklySalary) {
-        this.weeklySalary = weeklySalary;
-    }
+CREATE TABLE KhoaHoc
+(
+MaKH varchar(10)NOT NULL,
+MaCTDT varchar(10)NOT NULL,
+TenKH nvarchar(50)
+)
+CREATE TABLE Lop
+(
+MaLop varchar(10)NOT NULL,
+MaKH varchar(10)NOT NULL,
+TenLop nvarchar(50)
+)
 
-    // Override phương thức calculateEarnings cho SalariedEmployee
-    @Override
-    public double calculateEarnings() {
-        return weeklySalary;
-    }
 
-    // Override phương thức in thông tin
-    @Override
-    public void print() {
-        super.print();
-        System.out.println("Salaried Employee");
-    }
-}
+CREATE TABLE MonHoc
+(
+ MaMH varchar(10)NOT NULL,
+ TenMH nvarchar(50)
+ )
+
+
+CREATE TABLE SinhVien
+(
+MaSV varchar(10)NOT NULL,
+HoTen nvarchar(50)not null,
+GioiTinh nvarchar(10)not null,
+NgaySinh Datetime,
+NoiSinh nvarchar(30)not null,
+MaLop varchar(10)NOT NULL,
+)
+
+
+CREATE TABLE KetQuaThi
+(
+MaSV varchar(10)NOT NULL,
+ MaMH varchar(10)NOT NULL,
+ LanThi int not null,
+ DiemThi float,
+)
+SELECT *
+FROM CT_Daotao
+SELECT *
+FROM KhoaHoc
+SELECT *
+FROM Lop
+ SELECT *
+FROM MonHoc
+  SELECT *
+FROM SinhVien
+  SELECT *
+FROM KetQuaThi
+ALTER TABLE CT_DaoTao ADD CONSTRAINT PK_CTDaoTao PRIMARY KEY(MaCTDT)
+ALTER TABLE KhoaHoc ADD CONSTRAINT PK_KhoaHoc PRIMARY KEY(MaKH)
+ALTER TABLE Lop ADD CONSTRAINT PK_Lop PRIMARY KEY(MaLop)
+ALTER TABLE MonHoc ADD CONSTRAINT PK_MonHoc PRIMARY KEY(MaMH)
+ALTER TABLE SinhVien ADD CONSTRAINT PK_SinhVien PRIMARY KEY(MaSV)
+ALTER TABLE KetQuaThi ADD CONSTRAINT PK_KetQuaThi PRIMARY KEY(MaSV,MaMH,LanThi)
+
+--kiem tra
+SP_PKEYS CT_DaoTao
+SP_PKEYS KhoaHoc
+SP_PKEYS Lop
+SP_PKEYS MonHoc
+SP_PKEYS SinhVien
+SP_PKEYS KetQuaThi
+
+ALTER TABLE KhoaHoc ADD CONSTRAINT FK_KH_MaCTDT FOREIGN KEY(MaCTDT) REFERENCES CT_DaoTao(MaCTDT)
+ALTER TABLE Lop ADD CONSTRAINT FK_Lop_MaKH FOREIGN KEY(MaKH) REFERENCES KhoaHoc(MAKH)
+ALTER TABLE KetQuaThi ADD CONSTRAINT FK_KetQuaThi_MaMH FOREIGN KEY(MaMH) REFERENCES MonHoc(MaMH)
+ALTER TABLE KetQuaThi ADD CONSTRAINT FK_KetQuaThi_MaSV FOREIGN KEY(MaSV) REFERENCES SinhVien(MaSV)
+ALTER TABLE SinhVien ADD CONSTRAINT FK_Lop_MaLop FOREIGN KEY(MaLop) REFERENCES Lop(MaLop)
+INSERT INTO CT_Daotao VALUES('1',N'Cử Nhân')
+INSERT INTO CT_Daotao VALUES('2',N'Cao Đẳng')
+INSERT INTO CT_Daotao VALUES('3',N'Trung Cầp')
+--
+INSERT INTO MonHoc VALUES('TH101',N'Tin học đại cương')
+INSERT INTO MonHoc VALUES('TH110',N'Toán rời rạc')
+INSERT INTO MonHoc VALUES('TH102',N'Cơ sở dữ liệu')
+--
+SET DATEFORMAT DMY
+INSERT INTO SinhVien VALUES('K116',N'Đinh Nguyễn Vân Anh',N'Nữ','18/12/1985',N'Bình Thuận','1')
+INSERT INTO SinhVien VALUES('K117',N'Trần Hoàng Anh',N'Nữ','4/8/1986','Bình Dương','1')
+INSERT INTO SinhVien VALUES('K118',N'Bùi Thanh Bình',N'Nam','23/10/1985',N'Đồng Nai','1')
+INSERT INTO SinhVien VALUES('K119',N'Phạm Nhật Tân',N'Nam','15/1/1985',N'Đồng Tháp','2')
+INSERT INTO SinhVien VALUES('K120',N'Định Thiện Hòa','Nam','8/12/1985',N'Vĩnh Long','3')
+INSERT INTO SinhVien VALUES('K121',N'Nguyễn Anh Khoa','Nam','14/11/1985',N'Vũng Tàu','3')
+INSERT INTO SinhVien VALUES('K122',N'Trương Mộng Thúy',N'Nữ','12/5/1986',N'Cần Thơ','2')
+INSERT INTO SinhVien VALUES('K123',N'Võ Anh Thi',N'Nữ','23/5/1986',N'Bến Tre','2')
+--
+INSERT INTO Lop VALUES('1','1','K1_1')
+INSERT INTO Lop VALUES('2','1','K2_1')
+INSERT INTO Lop VALUES('3','1','K3_1')
+INSERT INTO Lop VALUES('4','2','K3_2')
+--
+INSERT INTO KhoaHoc VALUES('1','1','Khóa 1 năm 2005')
+INSERT INTO KhoaHoc VALUES('2','1','Khóa 2 năm 2006')
+INSERT INTO KhoaHoc VALUES('3','2','Khóa 1 năm 2007')
+INSERT INTO KhoaHoc VALUES('4','3','Khóa 1 năm 2008')
+INSERT INTO KhoaHoc VALUES('5','2','Khóa 2 năm 2008')
+--
+INSERT INTO KetQuaThi VALUES('K116','TH101','1','8')
+INSERT INTO KetQuaThi VALUES('K117','TH101','1','4')
+INSERT INTO KetQuaThi VALUES('K118','TH101','1','6.5')
+INSERT INTO KetQuaThi VALUES('K119','TH102','1','5')
+INSERT INTO KetQuaThi VALUES('K120','TH102','1','7')
+INSERT INTO KetQuaThi VALUES('K116','TH110','1','7')
+INSERT INTO KetQuaThi VALUES('K118','TH102','1','9')
+INSERT INTO KetQuaThi VALUES('K119','TH101','1','6')
+INSERT INTO KetQuaThi VALUES('K120','TH101','1','5')
+INSERT INTO KetQuaThi VALUES('K116','TH102','1','7.5')
+INSERT INTO KetQuaThi VALUES('K117','TH101','2','7')
+--BT
+--1
+ALTER TABLE SinhVien ADD GhiChu varchar(50)
+--2
+INSERT INTO MonHoc VALUES('TH112',N'Kiến trúc máy tính')
+--3
+UPDATE KetQuaThi SET DiemThi='7.5' WHERE MaSV='K116' AND MaMH='TH101' 
+SELECT *
+FROM KetQuaThi
+--4
+SELECT MaSV,HoTen
+FROM SinhVien
+--5
+SELECT TenMH
+FROM MonHoc
+--6
+SELECT HoTen,TenLop
+FROM SinhVien,Lop
+WHERE TenLop='K1_1'
+--7
+SELECT MaSV,HoTen
+FROM SinhVien
+WHERE YEAR(NgaySinh)='1985'
+--8
+SELECT *
+FROM SinhVien S,CT_Daotao C,KhoaHoc K,Lop L
+WHERE S.MaLop=L.MaKH
+AND K.MaCTDT=L.TenCTDT
+AND L.TenCTDT='Cử Nhân'
+--9
+SELECT MaSV,HoTen,DiemThi
+FROM KetQuaThi K,MonHoc M,SinhVien S
+WHERE S.MaSV=M.MaMH
+AND TenMH='Tin Học Đại Cương'
+
+--10
+SELECT MaLop ,COUNT(MaSV)AS SLSV
+FROM SinhVien,Lop
+GROUP BY MaLop
+HAVING SinhVien.MaLop=Lop.MaLop AND Lop.TenLop='K3_1'
+
+
+--11
+SELECT COUNT(MaSV) AS SoLuong_SV
+FROM SinhVien
+GROUP BY MaLop
+--12
+SELECT GioiTinh COUNT(MaSV) AS SoLuong_SV
+FROM SinhVien
+GROUP BY GioiTinh,MaSV
+HAVING GioiTinh='Nữ'
+
+--13
+SELECT NoiSinh, COUNT(MaSV) AS SoLuong_SV
+FROM SinhVien 
+group BY NoiSinh
+--14
+SELECT NoiSinh, COUNT(MaSV) as SoLuong_SV
+FROM KhoaHoc K, SinhVien SV, Lop l, CT_DaoTao CT_DaoTao
+WHERE SV.MaLop=K.MaKH 
+AND L.MaKH= K. MaKH
+AND K.MaCTDT=CT.MaCTDT
+GROUP BY TenCTDT
+--19
+SELECT HoTen,TenMH,kqt.LanThi
+FROM MonHoc mh, KetQuaThi kqt,SinhVien SV
+WHERE sv.MaSV=kqt.MaSV
+And kqt.MaMH=mh.MaMH
+and LanThi>=2
